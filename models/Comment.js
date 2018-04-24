@@ -4,9 +4,15 @@ var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
   // `title` is of type String
-  title: String,
-  // `body` is of type String
-  body: String
+  name: {
+    type: String,
+    required: true
+  },
+  // body is a string that's required
+  body: {
+    type: String,
+    required: true
+  }
 });
 
 var Comment = mongoose.model("Comment", CommentSchema);
