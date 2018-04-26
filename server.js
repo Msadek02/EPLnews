@@ -91,8 +91,18 @@ app.get("/articles", function(req, res) {
   db.Article.find({})
   .populate("comment")
   .then(function(dbArticle){
-
     res.json(dbArticle);
+  })
+  .catch(function(err){
+    res.json(err)
+  });
+});
+
+app.get("/comments", function(req, res) {
+  // TODO: Finish the route so it grabs all of the articles
+  db.Comment.find({})
+  .then(function(dbComment){
+    res.json(dbComment);
   })
   .catch(function(err){
     res.json(err)

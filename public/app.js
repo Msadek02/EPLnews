@@ -3,10 +3,19 @@ $.getJSON("/articles", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+     
+      $("#articles").append("<p data-id= " + data[i]._id + ">" + "<br />" + data[i].title + "<br/>" + data[i].paragraph + "<br/>" + data[i].link + "</p>");
     }
   });
   
+  // $.getJSON("/comments", function(res) {
+  //   // For each one
+  //   for (var i = 0; i < res.length; i++) {
+  //     // Display the apropos information on the page
+      
+  //     $("#comments").append("<p data-id='" + res[i]._id + "'>" + res[i].name + "<br />" + res[i].body + "</p>");
+  //   }
+  // });
   
   // Whenever someone clicks a p tag
   $(document).on("click", "p", function() {
@@ -21,10 +30,10 @@ $.getJSON("/articles", function(data) {
       url: "/articles/" + thisId
     })
       // With that done, add the note information to the page
-      .then(function(data) {
-        console.log(data);
+      .then(function(data, id) {
+        console.log(data, id);
         // The title of the article
-        $("#comments").append("<h2>" + data.name + "</h2>");
+        $("#comments").append("<h2>" + data.body + "</h2>");
         // An input to enter a new title
         $("#comments").append("<input id='nameinput' name='name' >");
         // A textarea to add a new note body
