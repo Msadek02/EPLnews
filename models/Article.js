@@ -11,10 +11,15 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  note: {
-    type: Schema.Types.ObjectId,
-    ref: "Note"
-  }
+  paragraph : {
+    type: String
+  },
+  comment: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 // This creates our model from the above schema, using mongoose's model method

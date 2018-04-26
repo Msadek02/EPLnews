@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Scraping With Mongoose</title>
     <style>
-      body { background-color: #F2F6D0 }
+      body { background-color: rgb(179, 45, 45);
+        background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ),  url("https://www.sjpl.org/sites/default/files/images/1718/nyt.png");
+       }
       #wrapper {
         width: 960px;
         margin-left: auto;
@@ -17,7 +19,7 @@
         width: 60%;
         height: 700px;
       }
-      #notes {
+      #comments {
         float: right;
         width: 30%;
       }
@@ -34,14 +36,25 @@
         height: 200px;
         font-size: 18px;
       }
+      p {
+       color: white;
+      }
+      h2{
+        color: whitesmoke;
+        text-align: center;
+      }
+      h1 {
+        color: tan;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <h1>NY Times Scraper</h1>
+      <h2><i>Scrape the leading News enthusiast website for exciting articles.</i></h2>
       <div id="articles"></div>
-      <div id="notes"></div>
+      <div id="comments"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>
