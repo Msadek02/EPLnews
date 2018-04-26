@@ -26,10 +26,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-db.Article.remove({}, function(err) { 
-  console.log('collection removed') 
-});
+// db.Article.remove({}, function(err) { 
+//   console.log('collection removed') 
+// });
 
+// db.Comment.remove({}, function(err) { 
+//   console.log('collection removed') 
+// });
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/NytNews" , function(error){
   if(error) console.log(error);
@@ -86,6 +89,7 @@ app.get("/scrape", function(req, res) {
 app.get("/articles", function(req, res) {
   // TODO: Finish the route so it grabs all of the articles
   db.Article.find({})
+  .populate("comment")
   .then(function(dbArticle){
 
     res.json(dbArticle);
@@ -119,7 +123,7 @@ app.post("/articles/:id", function(req, res) {
 
 db.Comment.create(req.body)
 .then(function(dbComment){
-  return db.Article.findOneAndUpdate({_id: req.params.id}, { Comment: dbComment._id}, { new: true});
+  return db.Article.findOneAndUpdate({_id: req.params.id}, { $push: { comment: dbComment._id}}, { new: true});
 })
 .then(function(dbArticle){
   res.json(dbArticle);
