@@ -26,19 +26,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-// db.Article.remove({}, function(err) { 
-//   console.log('collection removed') 
-// });
+var uristring =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+"mongodb://localhost/NytNews";
 
-// db.Comment.remove({}, function(err) { 
-//   console.log('collection removed') 
-// });
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/NytNews" , function(error){
-  if(error) console.log(error);
+// The http server will listen to an appropriate port, or default to
+// port 8000.
+var theport = process.env.PORT || 8000;
 
-      console.log("connection successful");
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
 });
+
+
 
 // Routes
 
