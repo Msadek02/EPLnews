@@ -98,17 +98,6 @@ app.get("/articles", function(req, res) {
   });
 });
 
-app.get("/comments", function(req, res) {
-  // TODO: Finish the route so it grabs all of the articles
-  db.Comment.find({})
-  .then(function(dbComment){
-    res.json(dbComment);
-  })
-  .catch(function(err){
-    res.json(err)
-  });
-});
-
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
   // TODO
